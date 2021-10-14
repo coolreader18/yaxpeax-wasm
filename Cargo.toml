@@ -1,0 +1,9 @@
+[package]
+name = "yaxpeax-wasm"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies]
+yaxpeax-arch = { version = "0.2.7" }
+num-traits = "0.2"
+itertools = "0.10"

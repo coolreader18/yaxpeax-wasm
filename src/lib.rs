@@ -1,7 +1,6 @@
 use core::fmt;
 
 use instructions::Instruction;
-use yaxpeax_arch::annotation::AnnotatingDecoder;
 use yaxpeax_arch::{annotation, ReadError, Reader};
 
 mod instructions;
@@ -75,11 +74,16 @@ impl yaxpeax_arch::DecodeError for DecodeError {
 pub struct Decoder;
 
 impl yaxpeax_arch::Decoder<Wasm32> for Decoder {
+    fn decode<T: Reader<u32, u8>>(&self, words: &mut T) -> Result<Instruction, DecodeError> {
+        instructions::read_instr(words, &mut annotation::NullSink)
+    }
+
     fn decode_into<T>(&self, inst: &mut Instruction, words: &mut T) -> Result<(), DecodeError>
     where
         T: Reader<u32, u8>,
     {
-        self.decode_with_annotation(inst, words, &mut annotation::NullSink)
+        *inst = self.decode(words)?;
+        Ok(())
     }
 }
 

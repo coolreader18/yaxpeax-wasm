@@ -3,7 +3,11 @@ name = "yaxpeax-wasm"
 version = "0.1.0"
 edition = "2018"
 
+[features]
+default = ["std"]
+std = ["yaxpeax-arch/std"]
+
 [dependencies]
-yaxpeax-arch = { version = "0.2.7" }
+yaxpeax-arch = { version = "0.2.7", default-features = false }
 num-traits = "0.2"
 itertools = "0.10"

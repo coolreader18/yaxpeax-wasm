@@ -1,3 +1,9 @@
+#![no_std]
+
+extern crate alloc;
+#[cfg(feature = "std")]
+extern crate std;
+
 use core::fmt;
 
 use instructions::Instruction;
@@ -32,6 +38,7 @@ impl fmt::Display for DecodeError {
     }
 }
 
+#[cfg(feature = "std")]
 impl std::error::Error for DecodeError {}
 
 impl From<ReadError> for DecodeError {

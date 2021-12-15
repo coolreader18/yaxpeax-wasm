@@ -1,4 +1,4 @@
-use std::fmt;
+use core::fmt;
 
 #[derive(Debug, PartialEq, Clone, Copy)]
 #[repr(u8)]

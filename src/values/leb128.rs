@@ -70,7 +70,7 @@ where
 {
     // TODO Should be const, not let because it only depends on T, but Rust doesn't allow it (yet).
     // Rust 1.37: "error[E0401]: can't use generic parameters from outer function".
-    let bits: usize = std::mem::size_of::<T>() * 8;
+    let bits: usize = core::mem::size_of::<T>() * 8;
     read_bits(words, bits)
 }
 
